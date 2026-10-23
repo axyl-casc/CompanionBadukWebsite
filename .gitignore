@@ -1,0 +1,7 @@
+dist/
+node_modules/
+.sites-publish/
+.sites-runtime/
+asset-contact-sheet.jpg
+*.tar.gz
+
