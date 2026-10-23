@@ -32,8 +32,10 @@ The workflow uses Node.js 22 to generate and validate all pages with `npm run ch
 - `site/index.html`: home page, feature tabs, screenshot gallery, and FAQ.
 - `site/styles.css`: responsive visual design.
 - `site/app.js`: accessible mobile navigation, feature tabs, and image dialog.
+- The home page scenery follows the visitor’s device clock: day from 06:00–16:59, dusk from 17:00–19:59, and night from 20:00–05:59. It checks every minute and when the tab becomes visible again; no location permission or network time service is used. Without JavaScript, the daytime scene remains visible.
 - `site/legal-content.mjs`: privacy, terms, support/refunds, accessibility, and notices. `scripts/build.mjs` generates full static HTML pages with navigation and page descriptions.
 - `site/assets/`: optimized WebP copies of the supplied images. Originals remain in `img/`.
+- `site/assets/bg/`: 1920px and 960px WebP versions of the day, dusk, and night artwork in `img/bg/`. Update these copies if the original artwork changes.
 - `scripts/check.mjs`: validates internal links, resources, fragment destinations, page headings, and basic markup requirements.
 
 No analytics, cookies, local storage, third-party fonts, remote media embeds, accounts, or forms are implemented in the website code. The host may process request/security logs or use necessary access cookies independently.

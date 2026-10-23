@@ -1,3 +1,31 @@
+// Date#getHours uses the visitor's device timezone, including daylight saving time.
+function getTimeScene(date = new Date()) {
+  const hour = date.getHours();
+  if (hour >= 6 && hour < 17) return 'day';
+  if (hour >= 17 && hour < 20) return 'dusk';
+  return 'night';
+}
+
+if (document.querySelector('.hero-stage')) {
+  const sceneLabels = {
+    day: 'A little daytime daydream',
+    dusk: 'Golden hour. Go hour.',
+    night: 'A few moves under the stars',
+  };
+  function updateScene() {
+    const scene = getTimeScene();
+    if (document.documentElement.dataset.scene === scene) return;
+    document.documentElement.dataset.scene = scene;
+    document.querySelector('[data-scene-label]').textContent = sceneLabels[scene];
+    document.querySelector('.scene-note').hidden = false;
+  }
+  updateScene();
+  // Recheck while open, and immediately after returning from a sleeping/background tab.
+  setInterval(() => { if (!document.hidden) updateScene(); }, 60_000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) updateScene(); });
+  window.addEventListener('pageshow', updateScene);
+}
+
 const menu = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.navigation');
 menu?.addEventListener('click', () => {

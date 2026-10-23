@@ -31,3 +31,4 @@ for (const name of await readdir(root)) {
 }
 if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }
 else console.log(`Checked all 7 HTML pages, ${checked} local links/assets, fragments, image descriptions, and external-link safety.`);
+await import('./check-scenes.mjs');
