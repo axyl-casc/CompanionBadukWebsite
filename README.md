@@ -35,6 +35,7 @@ The workflow uses Node.js 22 to generate and validate all pages with `npm run ch
 - The home page scenery follows the visitor’s device clock: day from 06:00–16:59, dusk from 17:00–19:59, and night from 20:00–05:59. It checks every minute and when the tab becomes visible again; no location permission or network time service is used. Without JavaScript, the daytime scene remains visible.
 - `site/legal-content.mjs`: privacy, terms, support/refunds, accessibility, and notices. `scripts/build.mjs` generates full static HTML pages with navigation and page descriptions.
 - `site/assets/`: optimized WebP copies of the supplied images. Originals remain in `img/`.
+- `img/preview.png`: shared-link preview image, copied to `dist/assets/preview.png` during the build. The homepage includes Open Graph and Twitter card metadata pointing to this image on GitHub Pages.
 - `site/assets/bg/`: 1920px and 960px WebP versions of the day, dusk, and night artwork in `img/bg/`. Update these copies if the original artwork changes.
 - `scripts/check.mjs`: validates internal links, resources, fragment destinations, page headings, and basic markup requirements.
 
@@ -46,7 +47,7 @@ Support contact: **companionbaduk@gmail.com**. Developer/publisher display name:
 
 The terms cover the website and support; Steam's agreements and any separately supplied game license govern game purchases and use. The site includes links to Valve's current refund and privacy policies, an accessibility statement, and the AI content disclosure from the Steam listing. These pages are a practical starting point, not a legal compliance certification. Have the operator review them before a public launch, especially if an individual or registered business must be named or an address is legally required.
 
-When changing hosting, review the infrastructure-provider disclosures in the privacy policy. When using a custom domain, update the absolute `og:image` URL in `site/index.html`. If game data collection, cloud features, analytics, payments, release status, requirements, or Steam Deck compatibility change, update the relevant descriptions and policy dates. Do not describe the game as Steam Deck Verified unless Valve grants that rating.
+When changing hosting, review the infrastructure-provider disclosures in the privacy policy. When using a custom domain, update the absolute `og:url`, `og:image`, and `twitter:image` URLs in `site/index.html`. If replacing `img/preview.png`, also update its dimensions and descriptions in that file. If game data collection, cloud features, analytics, payments, release status, requirements, or Steam Deck compatibility change, update the relevant descriptions and policy dates. Do not describe the game as Steam Deck Verified unless Valve grants that rating.
 
 The original screenshots are not regenerated during a build. Optimized assets are checked into the repository so Node.js is the only runtime dependency.
 

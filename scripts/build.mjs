@@ -9,6 +9,8 @@ for (const entry of await readdir(resolve(root, 'site'), { withFileTypes: true }
   if (entry.name.endsWith('.mjs')) continue;
   await cp(resolve(root, 'site', entry.name), resolve(dist, entry.name), { recursive: true });
 }
+// Publish the supplied sharing image alongside the website's other assets.
+await cp(resolve(root, 'img/preview.png'), resolve(dist, 'assets/preview.png'));
 for (const page of pages) await writeFile(resolve(dist, `${page.slug}.html`), renderPage(page));
 // Keep the supplied database self-contained, including under a project subpath.
 const database = resolve(dist, 'proverbs');
